@@ -4,12 +4,18 @@
 
 Scripts to preprocess TCGA data
 
-ExpressionMatrix.py combines individual expression files into one gene expression matrix.
-Usage:
+###ExpressionMatrix.py
+
+ExpressionMatrix.py combines individual expression files into one gene expression matrix.  
+Usage:  
 ```
 python ExpressionMatrix.py 'path/to/data/*rsem.genes.normalized_results'
 ```
-miRMatrix.py combines individual miRNA expression files into one miRNA expression matrix. 
+
+###miRMatrix.py
+
+miRMatrix.py combines individual miRNA expression files into one miRNA expression matrix.  
+Usage:  
 ```
 python miRMatrix.py 'path/to/data/*mirna.quantification.txt'
 ```
