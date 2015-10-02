@@ -7,6 +7,10 @@ import glob
 def create_header(files):
     header = "ID\t"
 
+    if len(files) == 0:
+        print('No files found in the glob')
+        sys.exit()
+
     for filename in files:
         if filename.split('-')[3] == "01A":
             sample_id = filename.split('-')[2]

@@ -1,8 +1,13 @@
 from ExpressionMatrix import *
+from nose.tools import raises
 import unittest
 
 def test_header():
     assert create_header(['unc.edu.ff74b4c6-e938-4a40-ab1a-84525349a62e.1229487.rsem.genes.normalized_results', 'unc.edu.8719f9af-0876-4ec6-a4dc-4178ad964349.1643074.rsem.genes.normalized_results']) == "ID\tff74b4c6\t8719f9af"
+
+@raises(SystemExit)
+def test_empty():
+    create_header([])
 
 def test_gene_id():
     _, gene_ids = parse_genes(['tests/genes1', 'tests/genes2'])

@@ -5,6 +5,11 @@ import glob
 def create_header(files):
     #Will need to change IDs
     header = "ID\t"
+
+    if len(files) == 0:
+        print('No files found in the glob')
+        sys.exit()
+
     for filename in files:
         sample_id = filename.split('-')[0].split('unc.edu.')[-1]
         header = header + sample_id + "\t"
