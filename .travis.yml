@@ -7,3 +7,7 @@ python:
     - "3.4"
 script: 
     - nosetests
+
+notifications:
+  webhooks: http://104.131.120.228:8080/hubot/travisci/general
+  on_start: true
