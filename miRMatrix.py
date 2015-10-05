@@ -5,18 +5,18 @@ import glob
 #TODO: Will have to check TCGA barcoding standard for 01A vs 01B vs 11A etc
 
 def create_header(files):
-    header = "ID\t"
+    header = 'ID\t'
 
     if len(files) == 0:
         print('No files found in the glob')
         sys.exit()
 
     for filename in files:
-        if filename.split('-')[3] == "01A":
+        if filename.split('-')[3] == '01A':
             sample_id = filename.split('-')[2]
         else:
             continue
-        header = header + sample_id + "\t"
+        header = header + sample_id + '\t'
     header = header.rstrip()
     return header
 
@@ -31,7 +31,7 @@ def parse_mirna(files):
             if (not mirna.startswith('miR')) and mirna != '':
                 mirna_id, _, value, _ = mirna.split('\t')
                 if mirna_id in mirna_data:
-                    mirna_data[mirna_id] = mirna_data[mirna_id] + "\t" + value
+                    mirna_data[mirna_id] = mirna_data[mirna_id] + '\t' + value
                 else:
                     mirna_data[mirna_id] = value
                     mirna_ids.append(mirna_id)
@@ -50,5 +50,5 @@ def main():
     for mirna in mirna_ids:
         print(mirna + '\t' + mirna_data[mirna])
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
