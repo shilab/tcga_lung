@@ -4,7 +4,7 @@ import glob
 
 def create_header(files):
     #Will need to change IDs
-    header = "ID\t"
+    header = 'ID\t'
 
     if len(files) == 0:
         print('No files found in the glob')
@@ -12,7 +12,7 @@ def create_header(files):
 
     for filename in files:
         sample_id = filename.split('-')[0].split('unc.edu.')[-1]
-        header = header + sample_id + "\t"
+        header = header + sample_id + '\t'
     header = header.rstrip()
     return header
 
@@ -27,7 +27,7 @@ def parse_genes(files):
                 gene_id, value = gene.split('\t')
                 gene_id = gene_id.split('|')[0]
                 if gene_id in gene_data:
-                    gene_data[gene_id] = gene_data[gene_id] + "\t" + value
+                    gene_data[gene_id] = gene_data[gene_id] + '\t' + value
                 else:
                     gene_data[gene_id] = value
                     gene_ids.append(gene_id)
@@ -47,5 +47,5 @@ def main():
     for gene in gene_id:
         print(gene + '\t' + gene_data[gene])
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
