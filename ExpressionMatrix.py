@@ -19,15 +19,21 @@ def create_header(files):
 def parse_genes(files):
     gene_data = {}
     gene_ids = []
-    for data in files:
+    for counter, data in enumerate(files):
         genes = open(data, 'r').read()
         genes = genes.split('\n')
         for gene in genes:
             if not (gene.startswith('gene') or gene.startswith('?')) and gene != '':
                 gene_id, value = gene.split('\t')
+                orig_id = gene_id
                 gene_id = gene_id.split('|')[0]
-                if gene_id in gene_data:
+                if orig_id in gene_data:
+                    gene_data[orig_id] = gene_data[orig_id] + '\t' + value
+                elif gene_id in gene_data and counter!=0:
                     gene_data[gene_id] = gene_data[gene_id] + '\t' + value
+                elif gene_id in gene_data and counter==0:
+                    gene_data[orig_id] = value
+                    gene_ids.append(orig_id)
                 else:
                     gene_data[gene_id] = value
                     gene_ids.append(gene_id)
