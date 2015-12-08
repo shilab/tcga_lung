@@ -1,29 +1,31 @@
-import os, sys, re
+import os
+import sys
+import re
+import shutil
+
+aliquot_file = sys.argv[1]
+path = sys.argv[2]
+newpath = sys.argv[3]
 
 new_dict = {}
 
-input_file = open('aliquot.txt')
-for line in input_file:
-#	print "these are the lines:", line
-	new_name, old = line.split()
-	new_dict[old] = new_name
+with open(aliquot_file, 'r') as af:
+    for line in af:
+        temp = line.split('\t')
+        new_name = temp[2]
+        old = temp[3]
+        new_dict[old] = new_name
 
-#print new_dict
-#os.chdir("/projects/shilab/Hdesai/lung_cancer/RNASeq/")
-
-path = "/projects/shilab/Hdesai/lung_cancer/RNASeq/"
-os.chdir(path)
 for filename in os.listdir(path):
-	root, extension = os.path.splitext(filename)
-	extra = root[36:]
-	file_end = root[:36]
-#	print "this is the extension", extension
-	if file_end in new_dict:
-		print "this works!"
-# old name contains extra and keep --- keep needs to be kept for renaming	
-		old = path + filename
-#		print "this is the old name:", old
-		new = path+new_dict[file_end]+ extra+extension
-#		print "this will be the new name", new
-	#	print old, new
-		os.rename(old, new)
+    if 'rsem' not in filename:
+        continue
+    temp = filename.split('unc.edu.')[1].split('.')
+    filename = temp[0]
+    extension = ('.').join(temp[1:])
+    if filename in new_dict:
+         print new_dict[filename]
+         old = path + 'unc.edu.' + filename +'.' + extension
+         print "this is the old name:", old
+         new = newpath + new_dict[filename] + '.' + extension
+         print "this will be the new name", new
+         shutil.copyfile(old, new)
