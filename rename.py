@@ -23,9 +23,6 @@ for filename in os.listdir(path):
     filename = temp[0]
     extension = ('.').join(temp[1:])
     if filename in new_dict:
-         print new_dict[filename]
          old = path + 'unc.edu.' + filename +'.' + extension
-         print "this is the old name:", old
          new = newpath + new_dict[filename] + '.' + extension
-         print "this will be the new name", new
          shutil.copyfile(old, new)
