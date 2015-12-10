@@ -3,7 +3,7 @@ from nose.tools import raises
 import unittest
 
 def test_header():
-    assert create_header(['unc.edu.ff74b4c6-e938-4a40-ab1a-84525349a62e.1229487.rsem.genes.normalized_results', 'unc.edu.8719f9af-0876-4ec6-a4dc-4178ad964349.1643074.rsem.genes.normalized_results']) == 'ID\tff74b4c6\t8719f9af'
+    assert create_header(['TCGA-97-8552-01A-11R-2403-07.1899074.rsem.genes.normalized_results', 'TCGA-78-7156-01A-11R-2039-07.1092613.rsem.genes.normalized_results']) == 'ID\t8552\t7156'
 
 @raises(SystemExit)
 def test_empty():

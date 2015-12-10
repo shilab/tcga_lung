@@ -3,7 +3,6 @@ import sys
 import glob
 
 def create_header(files):
-    #Will need to change IDs
     header = 'ID\t'
 
     if len(files) == 0:
@@ -11,7 +10,7 @@ def create_header(files):
         sys.exit()
 
     for filename in files:
-        sample_id = filename.split('-')[0].split('unc.edu.')[-1]
+        sample_id = filename.split('-')[2]
         header = header + sample_id + '\t'
     header = header.rstrip()
     return header
